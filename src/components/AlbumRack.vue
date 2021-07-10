@@ -8,7 +8,7 @@
 
   <div class="rack">
     <div class="artist"
-          v-if="state.isLoading && state.artist !== {}">
+          v-if="state.artist.images !== undefined">
       <img class="artist__cover" :src="state.artist.images[1].url" />
       <h3 class="artist__name">{{ state.artist.name }}</h3>
     </div>
@@ -50,6 +50,7 @@
 }
 .artist {
   width: 100%;
+  margin-bottom: 20px;
 }
 .artist__cover {
   width: 200px;
@@ -160,8 +161,6 @@ export default {
         (error) => { alert(`[Spotify]${error}`) }
       )
 
-      state.isLoading = true
-
       for (let artist of state.artists) {
         await spotifyApi.getArtistAlbums(artist.id).then(
           (data) => {
@@ -173,7 +172,6 @@ export default {
 
       albums = _.shuffle(albums)
       state.albums = albums
-      state.isLoading = false
     }
 
     const googleSearchLink = (album) => {
