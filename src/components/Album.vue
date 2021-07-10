@@ -1,18 +1,22 @@
 <template>
-  <div class="album">
+  <div class="flex flex-col
+              xl:w-1/5 lg:w-1/4 md:w-1/3 w-1/2
+              box-border p-4">
     <img :src="album.images[1].url"
-          class="album__cover" />
-    <h5 class="album__title">
-      <a :href="googleSearchLink(album)"
-          target="_blank"
-          rel="noopener noreferrer">
-        {{ album.name }}
-      </a>
-    </h5>
-    <h6 class="album__artist"
-        @click="selectArtist(album)">
-      {{ album.artists[0].name }}
-    </h6>
+        class="w-full rounded-2xl" />
+    <div class="p-4">
+      <h5 class="text-lg">
+        <a :href="googleSearchLink(album)"
+            target="_blank" rel="noopener noreferrer"
+            class="underline">
+          {{ album.name }}
+        </a>
+      </h5>
+      <h6 class="pt-2 text-sm opacity-50 underline cursor-pointer"
+          @click="selectArtist(album)">
+        {{ album.artists[0].name }}
+      </h6>
+    </div>
   </div>
 </template>
 
@@ -36,44 +40,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.album__title {
-  margin: 0;
-  font-weight: normal;
-  padding-top: 5px;
-  
-  a {
-    color: #fff;
-  }
-}
-.album__artist {
-  margin: 0;
-  opacity: 0.6;
-  font-weight: normal;
-  padding-top: 4px;
-  cursor: pointer;
-  text-decoration: underline;
-
-  &:hover {
-    text-decoration: underline;
-  }
-}
-.album {
-  @media screen and (min-width: 1200px) {
-    width: 16.66%;
-  }
-  @media screen and (min-width: 800px) {
-    width: 33.33%;
-  }
-  width: 50%;
-  box-sizing: border-box;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-}
-.album__cover {
-  width: 100%;
-  border-radius: 10px;
-}
-</style>

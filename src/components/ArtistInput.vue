@@ -2,8 +2,10 @@
   <input type="text"
           v-model="input"
           @change="enter(input)" 
-          placeholder="Your favorite artist"
-          class="favorite-artist"
+          placeholder="Enter your favorite artist"
+          class="text-4xl p-5 w-full my-5 box-border
+                  border-b-2 bg-black border-gray-800 text-white
+                  outline-none"
           autofocus />
 </template>
 
@@ -21,21 +23,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-.favorite-artist {
-  font-size: 30px;
-  border-radius: 30px;
-  padding: 10px 30px;
-  width: 100%;
-  box-sizing: border-box;
-  border: #333 solid 1px;
-  background: #333;
-  color: #fff;
-  margin-bottom: 20px;
-
-  &:focus {
-    outline: none;
-  }
-}
-</style>

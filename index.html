@@ -2,19 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" href="/src/assets/random-album-rack.svg" />
+    <link rel="icon" href="/src/img/random-album-rack.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Random Album Rack</title>
     <meta name="description" content="An app that lets you find new albums on Spotify's relationship diagram." />
-    <link rel="stylesheet" href="/src/assets/main.scss">
+    <link rel="stylesheet" href="/src/css/main.css">
   </head>
-  <body>
-    <header>
-      <img src="/src/assets/random-album-rack.svg"
-            class="logo">
-      <h1>Random Album Rack</h1>
+  <body class="bg-black m-0 text-white">
+    <header class="py-4 bg-gray-900">
+      <img src="/src/img/random-album-rack.svg"
+            class="w-10 block mx-auto mb-3">
+      <h1 class="m-0 text-center block text-2xl">Random Album Rack</h1>
     </header>
-    <main>
+    <main class="p-5">
       <div id="app"></div>
     </main>
     <script type="module" src="/src/main.js"></script>

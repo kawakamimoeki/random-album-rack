@@ -1,5 +1,5 @@
 <template>
-  <div class="rack">
+  <div class="flex flex-row flex-wrap my-5">
     <Album v-for="album in albums"
             :key="album.id"
             :album="album"
@@ -26,17 +26,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.rack {
-  display: flex;
-  flex-flow: row;
-  flex-wrap: wrap;
-  font-family: sans-serif;
-  color: #fff;
-  width: 100%;
-  padding: 2%;
-  box-sizing: border-box;
-  justify-content: space-between;
-}
-</style>
