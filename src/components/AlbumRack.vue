@@ -1,12 +1,18 @@
 <template>
   <input type="text"
           v-model="state.input"
-          @change="search(state.input)" 
+          @change="load(state.input)" 
           placeholder="Artist name"
           class="favorite-artist"
           autofocus />
 
   <div class="rack">
+    <div class="artist"
+          v-if="state.isLoading && state.artist !== {}">
+      <img class="artist__cover" :src="state.artist.images[1].url" />
+      <h3 class="artist__name">{{ state.artist.name }}</h3>
+    </div>
+
     <div v-for="album in state.albums"
         :key="album.id"
         class="album">
@@ -20,7 +26,7 @@
         </a>
       </h5>
       <h6 class="album__artist"
-          @click="search(album.artists[0].name)">
+          @click="load(album.artists[0].name)">
         {{ album.artists[0].name }}
       </h6>
     </div>
@@ -41,6 +47,23 @@
   &:focus {
     outline: none;
   }
+}
+.artist {
+  width: 100%;
+}
+.artist__cover {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
+  border-radius: 100%;
+  margin-bottom: 10px;
+}
+.artist__name {
+  margin: 0 auto;
+  display: block;
+  text-align: center;
 }
 .rack {
   display: flex;
@@ -105,10 +128,11 @@ export default {
       input: '',
       artist: {},
       artists: [],
-      albums: []
+      albums: [],
+      isLoading: false
     })
 
-    const search = async (name) => {
+    const load = async (name) => {
       state.artists = []
       state.albums = []
       let albums
@@ -136,6 +160,8 @@ export default {
         (error) => { alert(`[Spotify]${error}`) }
       )
 
+      state.isLoading = true
+
       for (let artist of state.artists) {
         await spotifyApi.getArtistAlbums(artist.id).then(
           (data) => {
@@ -147,13 +173,14 @@ export default {
 
       albums = _.shuffle(albums)
       state.albums = albums
+      state.isLoading = false
     }
 
     const googleSearchLink = (album) => {
       return `https://google.com/search?q=${encodeURI(album.name)}+${encodeURI(album.artists[0].name)}`
     }
 
-    return { state, search, googleSearchLink }
+    return { state, load, googleSearchLink }
   }
 }
 </script>
