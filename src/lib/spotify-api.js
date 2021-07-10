@@ -9,7 +9,7 @@ const api = new SpotifyWebApi({
 ky.post('https://accounts.spotify.com/api/token', {
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded',
-    Authorization: 'Basic OWE3MmQ3N2IzOWQ5NGEzM2EzNTdlNjliMmI3ZjI5OWE6ZjI3NzYwMDc2MzhlNDM0ZDg0MzI4NzM4N2ZiYWJlYzM='
+    Authorization: `Basic ${import.meta.env.VITE_CLIENT_ENCODED}`
   },
   body: 'grant_type=client_credentials'
 }).then(
